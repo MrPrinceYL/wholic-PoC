@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "WjgWDyIfltKe2Brep",
+        });
+    })();
+    </script>
+    <script defer src="js/script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Verifizieren</title>
+    <style>
+        body {
+            background-image: url('./img/Bg.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .login-logo {
+            max-width: 200px; /* Passe die Größe des Logos an */
+            margin-bottom: 35px; /* Abstand zwischen Logo und Formular */
+        }
+
+        .container {
+            /* background-color: #ffffff; */
+            padding: 2em;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 1em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        label {
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 0.5em;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #602474;
+            color: white;
+            border: none;
+            padding: 0.7em 1em;
+            font-size: 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        input[type="number"]:focus, button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <h1>Code Verifizieren</h1> -->
+        <img src="./img/Wholic_Logo.png" alt="Logo" class="login-logo"></img>
+        <form>
+            <input placeholder="6-stelligen Code eingeben" type="number" id="code" name="code" maxlength="6" required="">
+            <button id="submitCode">Code überprüfen</button>
+        </form>
+    </div>
+
+</body></html>

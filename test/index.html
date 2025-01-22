@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-stelliger Code per E-Mail</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        // EmailJS initialisieren
+        (function () {
+            emailjs.init("WjgWDyIfltKe2Brep"); // Public Key
+        })();
+
+        let generatedCode = ""; // Variable für den generierten Code
+
+        // Funktion: 6-stelligen Code generieren
+        function generateCode() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        // Funktion: E-Mail senden
+        function sendEmail() {
+            generatedCode = generateCode(); // 6-stelligen Code generieren
+
+            const emailParams = {
+                to_email: document.getElementById("emailInput").value, // E-Mail aus dem Eingabefeld
+                code: generatedCode // Generierter Code
+            };
+
+            emailjs.send("service_dv5gtsk", "template_6zy8j2q", emailParams)
+                .then(function (response) {
+                    alert("E-Mail erfolgreich gesendet! Überprüfe dein Postfach.");
+                    console.log("E-Mail gesendet:", response.status, response.text);
+                })
+                .catch(function (error) {
+                    alert("Fehler beim Senden der E-Mail. Bitte erneut versuchen.");
+                    console.error("Fehler:", error);
+                });
+        }
+
+        // Funktion: Code überprüfen
+        function verifyCode() {
+            const userCode = document.getElementById("codeInput").value; // Eingabe des Nutzers
+            const messageElement = document.getElementById("message"); // Nachrichtenelement
+
+            if (userCode === generatedCode) {
+                messageElement.textContent = "Code ist richtig!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = "Code ist falsch!";
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>6-stelligen Code per E-Mail senden</h1>
+
+    <!-- Eingabefeld für die E-Mail-Adresse -->
+    <div>
+        <input type="email" id="emailInput" placeholder="Deine E-Mail-Adresse" required>
+        <button onclick="sendEmail()">Code senden</button>
+    </div>
+
+    <!-- Eingabefeld für den 6-stelligen Code -->
+    <div>
+        <input type="text" id="codeInput" placeholder="6-stelligen Code eingeben" maxlength="6" required>
+        <button onclick="verifyCode()">Code überprüfen</button>
+    </div>
+
+    <!-- Nachricht -->
+    <p id="message"></p>
+</body>
+</html>
