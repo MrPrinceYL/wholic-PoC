@@ -86,14 +86,15 @@
     <div class="message-container">
     <img src="./img/Wholic_Logo.png" alt="Logo" class="login-logo"></img>
     <!-- <h1>Erfolg!</h1> -->
-    <p id="loginSuccessMessage">Ein Code wurde an **email** gesendet.<br>Bitte überprüfen Sie Ihr E-Mail-Postfach.</p>
+    <p id="loginSuccessMessage">Ein Code wurde gesendet.<br>Bitte überprüfen Sie Ihr E-Mail-Postfach.</p>
     <a href="verify_code.html">Hier klicken, um den Code einzugeben</a>
     </div>
 
 </body>
-<script type="text/javascript">
-    console.log(sessionStorage.getItem("enteredEmail"));
-    document.getElementById("loginSuccessMessage").innerHTML = document.getElementById("loginSuccessMessage").innerHTML.replaceAll("**email**", sessionStorage.getItem("enteredEmail"));
-    </script>
+<script>
+    // textContent statt innerHTML: die E-Mail-Adresse wird nicht als HTML ausgeführt
+    const msg = document.getElementById("loginSuccessMessage");
+    msg.firstChild.textContent = "Ein Code wurde an " + sessionStorage.getItem("enteredEmail") + " gesendet.";
+</script>
 
 </html>
