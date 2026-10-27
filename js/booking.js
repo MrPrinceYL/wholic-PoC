@@ -1,5 +1,6 @@
-// Buchungsstrecke: Formular füllen, Preis live anzeigen.
+// Buchungsstrecke: Formular füllen, Preis live anzeigen, Vertrag + Zahlung, bestellen.
 import { SERVICES, calculatePrice, formatEuro } from "./pricing.js";
+import { isValidIban } from "./iban.js";
 
 const form = document.getElementById("bookingForm");
 const serviceSelect = document.getElementById("service");
@@ -62,6 +63,54 @@ function cell(text) {
     return td;
 }
 
+// IBAN-Felder nur bei SEPA, PayPal-Hinweis nur bei PayPal zeigen
+function renderPaymentFields() {
+    const payment = form.payment.value;
+    document.getElementById("sepaFields").classList.toggle("hidden", payment !== "sepa");
+    document.getElementById("paypalHint").classList.toggle("hidden", payment !== "paypal");
+}
+
+function showError(message) {
+    const box = document.getElementById("formError");
+    box.textContent = message;
+    box.classList.remove("hidden");
+}
+
+// Bestellung prüfen, in sessionStorage ablegen und zur Bestätigung weiterleiten.
+// Im echten Produkt würde hier ein Request an das Backend gehen.
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const price = renderPrice();
+    if (!price || !form.reportValidity()) {
+        return;
+    }
+    const payment = form.payment.value;
+    if (payment === "sepa") {
+        if (!isValidIban(form.iban.value)) {
+            showError("Die IBAN ist ungültig. Bitte prüfen Sie Ihre Eingabe.");
+            return;
+        }
+        if (!form.sepaMandate.checked) {
+            showError("Für die Lastschrift brauchen wir Ihr SEPA-Mandat.");
+            return;
+        }
+    }
+
+    const order = {
+        number: "WH-" + Date.now().toString().slice(-8),
+        service: SERVICES[serviceSelect.value].name,
+        date: form.date.value,
+        address: form.address.value,
+        payment: payment,
+        // nur die letzten 4 Stellen der IBAN merken
+        ibanEnd: payment === "sepa" ? form.iban.value.replace(/\s+/g, "").slice(-4) : null,
+        price: price,
+    };
+    sessionStorage.setItem("lastOrder", JSON.stringify(order));
+    window.location.href = "danke.html";
+});
+
+form.addEventListener("change", renderPaymentFields);
 serviceSelect.addEventListener("change", () => {
     renderExtras();
     renderPrice();

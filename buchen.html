@@ -46,6 +46,43 @@
                 <table class="price-table" id="priceTable"></table>
                 <p class="hint">Festpreis, keine versteckten Kosten.</p>
             </fieldset>
+
+            <fieldset>
+                <legend>3. Vertrag</legend>
+                <div class="contract">
+                    <strong>Bauvertrag nach VOB/B (Muster)</strong><br>
+                    Der Auftraggeber beauftragt den von wholic vermittelten Fachbetrieb mit der oben
+                    beschriebenen Leistung zum angezeigten Festpreis. Grundlage des Vertrags ist die
+                    Vergabe- und Vertragsordnung für Bauleistungen Teil B (VOB/B) in der aktuellen Fassung.
+                    Die Abnahme erfolgt nach § 12 VOB/B. Die Verjährungsfrist für Mängelansprüche beträgt
+                    nach § 13 Abs. 4 VOB/B vier Jahre. Für Schäden, die bei der Ausführung entstehen, haftet
+                    die Betriebshaftpflichtversicherung des ausführenden Betriebs gemäß den AGB von wholic.
+                </div>
+                <label class="option">
+                    <input type="checkbox" id="acceptVob" required>
+                    Ich akzeptiere den Vertrag nach VOB/B und die AGB.
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>4. Zahlung</legend>
+                <label class="option"><input type="radio" name="payment" value="rechnung" checked> Rechnung (zahlbar in 14 Tagen)</label>
+                <label class="option"><input type="radio" name="payment" value="sepa"> SEPA-Lastschrift</label>
+                <label class="option"><input type="radio" name="payment" value="paypal"> PayPal</label>
+
+                <div id="sepaFields" class="hidden">
+                    <label for="iban">IBAN</label>
+                    <input type="text" id="iban" placeholder="DE89 3704 0044 0532 0130 00" autocomplete="off">
+                    <label class="option">
+                        <input type="checkbox" id="sepaMandate">
+                        Ich erteile wholic ein SEPA-Lastschriftmandat für diesen Auftrag.
+                    </label>
+                </div>
+                <p id="paypalHint" class="hint hidden">Nach dem Bestellen werden Sie zu PayPal weitergeleitet (im Proof of Concept simuliert).</p>
+            </fieldset>
+
+            <div id="formError" class="error hidden"></div>
+            <button type="submit">Kostenpflichtig bestellen</button>
         </form>
     </main>
 </body>
