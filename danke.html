@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danke | wholic</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html"><img src="img/Wholic_Logo.png" alt="wholic"></a>
+    </header>
+
+    <main class="booking">
+        <h1>Danke für Ihre Bestellung!</h1>
+        <div id="noOrder" class="hidden">
+            <p>Es wurde keine Bestellung gefunden.</p>
+            <a class="button" href="buchen.html">Zur Buchung</a>
+        </div>
+
+        <div id="summary" class="hidden">
+            <div class="card">
+                <p><strong>Bestellnummer:</strong> <span id="orderNumber"></span></p>
+                <p><strong>Leistung:</strong> <span id="orderService"></span></p>
+                <p><strong>Termin:</strong> <span id="orderDate"></span></p>
+                <p><strong>Ort:</strong> <span id="orderAddress"></span></p>
+                <p><strong>Zahlung:</strong> <span id="orderPayment"></span></p>
+                <p><strong>Gesamtpreis:</strong> <span id="orderTotal"></span> (inkl. MwSt.)</p>
+            </div>
+
+            <h2>Status</h2>
+            <ol class="steps">
+                <li>✅ Bestellung eingegangen, VOB-Vertrag erstellt</li>
+                <li id="paymentStatus"></li>
+                <li>🚐 Ihr Wholic ist zum Termin unterwegs</li>
+            </ol>
+            <p class="hint">Proof of Concept: Es wurde keine echte Bestellung ausgelöst.</p>
+            <a class="button" href="index.html">Zur Startseite</a>
+        </div>
+    </main>
+
+    <script type="module">
+        import { formatEuro } from "./js/pricing.js";
+
+        const PAYMENT_NAMES = { rechnung: "Rechnung", sepa: "SEPA-Lastschrift", paypal: "PayPal" };
+        const order = JSON.parse(sessionStorage.getItem("lastOrder") || "null");
+
+        if (!order) {
+            document.getElementById("noOrder").classList.remove("hidden");
+        } else {
+            // Alles über textContent setzen, damit Eingaben nicht als HTML ausgeführt werden
+            const set = (id, text) => (document.getElementById(id).textContent = text);
+            set("orderNumber", order.number);
+            set("orderService", order.service);
+            set("orderDate", new Date(order.date).toLocaleDateString("de-DE"));
+            set("orderAddress", order.address);
+            set("orderPayment", PAYMENT_NAMES[order.payment] + (order.ibanEnd ? ` (IBAN ...${order.ibanEnd})` : ""));
+            set("orderTotal", formatEuro(order.price.gross));
+            set("paymentStatus", order.payment === "rechnung"
+                ? "🧾 Rechnung wird per E-Mail verschickt"
+                : "💶 Zahlung erhalten");
+            document.getElementById("summary").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
