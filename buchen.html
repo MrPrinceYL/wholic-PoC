@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wholic buchen | wholic</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/booking.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <a href="index.html"><img src="img/Wholic_Logo.png" alt="wholic"></a>
+        <nav>
+            <a href="index.html#service">Service</a>
+            <a href="index.html#kontakt">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="booking">
+        <h1>Wholic buchen</h1>
+
+        <form id="bookingForm">
+            <fieldset>
+                <legend>1. Leistung</legend>
+                <label for="service">Was soll gemacht werden?</label>
+                <select id="service" name="service"></select>
+
+                <label for="quantity">Umfang (<span id="unit">m²</span>)</label>
+                <input type="number" id="quantity" name="quantity" min="1" step="0.5" value="20" required>
+
+                <div id="extras"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>2. Termin und Ort</legend>
+                <label for="date">Wunschtermin</label>
+                <input type="date" id="date" name="date" required>
+                <p class="hint">Frühester Termin: morgen.</p>
+
+                <label for="address">Adresse der Baustelle</label>
+                <input type="text" id="address" name="address" placeholder="Straße Nr., PLZ Ort" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Ihr Preis</legend>
+                <table class="price-table" id="priceTable"></table>
+                <p class="hint">Festpreis, keine versteckten Kosten.</p>
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>
