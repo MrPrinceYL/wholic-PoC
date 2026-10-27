@@ -1,78 +1,16 @@
 <!DOCTYPE html>
-<html lang="de"><head>
-    <script type="module" defer src="js/script.js"></script>
+<html lang="de">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Verifizierung</title>
-    
-<style>
-    :root {
-        --bg-color: #602474;
-    }
-
-    body {
-        background-image: url('./img/Bg.png');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        background-color: #602474;
-        font-family: 'Arial', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        color: #333;
-    }
-
-    .login-logo {
-        max-width: 200px; /* Passe die Größe des Logos an */
-        margin-bottom: 20px; /* Abstand zwischen Logo und Formular */
-    }
-
-    .container {
-        /* background-color: #ffffff; */
-        padding: 2em;
-        border-radius: 20px;
-        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-        text-align: center;
-        max-width: 400px;
-        width: 100%;
-    }
-
-    h1 {
-        color: #28a745;
-        margin-bottom: 1em;
-    }
-
-    a {
-        display: inline-block;
-        background-color: #602474;
-        color: white;
-        text-decoration: none;
-        padding: 0.7em 1.5em;
-        border-radius: 20px;
-        transition: background-color 0.3s ease;
-    }
-
-    a:hover {
-        background-color: #602474;
-    }
-
-    .error {
-        color: #ff6b6b;
-        background-color: #4a2326;
-        padding: 1em;
-        border-radius: 20px;
-        margin-bottom: 1em;
-    }
-</style>
-
+    <title>Falscher Code | wholic</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <div class="container">
-        <img src="./img/Wholic_Logo.png" alt="Logo" class="login-logo"></img>
-        <div class="error">Falscher Code.<br>Bitte versuchen Sie es erneut.</div><a href="verify_code.html">Zurück zur Code-Eingabe</a>
+<body class="auth-page">
+    <div class="auth-box">
+        <a href="index.html"><img src="img/Wholic_Logo.png" alt="wholic" class="logo"></a>
+        <div class="error">Falscher Code.<br>Bitte versuchen Sie es erneut.</div>
+        <a href="verify_code.html">Zurück zur Code-Eingabe</a>
     </div>
-
-</body></html>
+</body>
+</html>

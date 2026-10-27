@@ -1,0 +1,298 @@
+/* Gemeinsame Styles für alle wholic-Seiten */
+
+:root {
+    --primary: #602474;
+    --primary-dark: #4a1b5a;
+    --accent: #e94e9b;
+    --text: #2b2b2b;
+    --muted: #6b6b6b;
+    --bg-light: #f7f2fa;
+    --radius: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background: #fff;
+}
+
+a {
+    color: var(--primary);
+}
+
+/* ---------- Kopfzeile ---------- */
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em 5%;
+    background: var(--primary);
+}
+
+.site-header img {
+    height: 36px;
+}
+
+.site-header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.5em;
+}
+
+.site-header nav a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Buttons und Formulare ---------- */
+
+button,
+.button {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.7em 1.4em;
+    font-size: 1em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+.button:hover {
+    background: var(--primary-dark);
+}
+
+.button.light {
+    background: #fff;
+    color: var(--primary);
+}
+
+input,
+select {
+    padding: 0.7em;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+/* ---------- Login-Seiten (lila Hintergrund, Karte in der Mitte) ---------- */
+
+.auth-page {
+    background: var(--primary) url("../img/Bg.png") center / cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 2em;
+    text-align: center;
+    color: #fff;
+}
+
+.auth-box .logo {
+    max-width: 200px;
+    margin-bottom: 40px;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.auth-box a {
+    color: #fff;
+}
+
+.error {
+    background: #fde8e8;
+    color: #b42318;
+    padding: 0.8em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+/* ---------- Startseite ---------- */
+
+.hero {
+    background: var(--primary) url("../img/Bg.png") center / cover no-repeat;
+    color: #fff;
+    text-align: center;
+    padding: 5em 5%;
+}
+
+.hero h1 {
+    font-size: 2.2em;
+    margin-top: 0;
+}
+
+.hero p {
+    max-width: 640px;
+    margin: 0 auto 2em;
+    line-height: 1.5;
+}
+
+section {
+    padding: 3em 5%;
+}
+
+section h2 {
+    color: var(--primary);
+    text-align: center;
+}
+
+section.light {
+    background: var(--bg-light);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5em;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.5em;
+    box-shadow: 0 2px 10px rgba(96, 36, 116, 0.1);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.card .number {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.steps {
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+footer {
+    background: var(--primary-dark);
+    color: #fff;
+    text-align: center;
+    padding: 2em 5%;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #fff;
+}
+
+/* ---------- Buchungsstrecke ---------- */
+
+.booking {
+    max-width: 760px;
+    margin: 2em auto;
+    padding: 0 5%;
+}
+
+.booking fieldset {
+    border: 1px solid #e3d6ea;
+    border-radius: var(--radius);
+    padding: 1.2em 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.booking legend {
+    color: var(--primary);
+    font-weight: bold;
+    padding: 0 0.5em;
+}
+
+.booking label {
+    display: block;
+    margin: 0.6em 0 0.3em;
+}
+
+.booking .option {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: normal;
+}
+
+.booking input[type="number"],
+.booking input[type="date"],
+.booking input[type="text"],
+.booking select {
+    width: 100%;
+}
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.price-table td {
+    padding: 0.4em 0;
+}
+
+.price-table td:last-child {
+    text-align: right;
+}
+
+.price-table .total td {
+    border-top: 2px solid var(--primary);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.contract {
+    max-height: 180px;
+    overflow-y: auto;
+    background: var(--bg-light);
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 0.9em;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .site-header nav a {
+        margin: 0 1em 0 0;
+    }
+
+    .hero h1 {
+        font-size: 1.6em;
+    }
+}

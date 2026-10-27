@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | wholic</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Public Key von EmailJS (ist für die Nutzung im Browser gedacht)
+        emailjs.init({ publicKey: "WjgWDyIfltKe2Brep" });
+    </script>
+    <script defer src="js/script.js"></script>
+</head>
+<body class="auth-page">
+    <div class="auth-box">
+        <a href="index.html"><img src="img/Wholic_Logo.png" alt="wholic" class="logo"></a>
+        <form>
+            <input placeholder="E-Mail-Adresse eingeben" type="email" id="email" name="email" required>
+            <button id="submit">Login-Code anfordern</button>
+        </form>
+    </div>
+</body>
+</html>
